@@ -1,0 +1,1115 @@
+ 
+ 
+
+
+ total_height_meters = (hat_height_cm + my_height_cm) / 100
+print("Height in meters =", total_height_meters)
+
+
+
+
+color="blue"
+print(" My favorite color is =", color)
+
+
+We'll demystify this bit of Python magic later when we talk about tuples.
+ 
+alluding  
+
+
+
+test = 0
+for i in range(n):
+   for j in range(n):
+      test = test + i * j
+
+Def tes1():
+      l=[]
+       For I in range(1000):
+              l=l+[i]
+Def test2():
+       L=[]
+       For i in range(1000):
+              L.append(i)
+
+
+Def test3():
+     L=[i for i  in range(1000) ]
+
+Def test4():
+    l = list(range(1000))
+
+
+
+
+###
+
+
+Python have following widely used data structure
+String: Python knows you want something to be a string when you put either “double-quotes” or ‘single-quotes’ around the text.
+- text = 'How are you :)'
+- text = "How are you :)"
+List: List literals are written within square [ ]
+- cityList = ['Delhi', 'Patna', 'Kanpur', 'Bangalore', 'Hyderabad']
+- numberList = [1, 2, 3, 4, 5]
+Tuple: tuple is a sequence of immutable Python objects
+- tuple = ()
+- tuple = ('Delhi', 'Patna', 'Kanpur', 'Bangalore', 'Hyderabad')
+- tuple = ('Patna',)
+- tuple = 'Delhi', 'Patna', 'Kanpur', 'Bangalore', 'Hyderabad
+Set: it is an unordered collection with no duplicate
+- citySet = set( [ 'Delhi', 'Patna', 'Kanpur', 'Bangalore', 'Hyderabad'])
+Dictionary: It is a sequence of items. Each item is a pair made of a key and a value.
+- CityDictionary = {1: 'Delhi', 2: 'Patna', 3: 'Kanpur', 4: 'Bangalore', 5: 'Hyderabad'} #where (1, 2, 3, 4, 5) are keys and (‘Delhi', ‘Patna’, ‘Kanpur', ‘Bangalore’, ‘Hyderabad) are values.
+Question: Difference between List and Tuple?
+Answer: List are mutable but Tuple are immutable.
+- cityTuple = ( 'Delhi', 'Patna', 'Kanpur', 'Bangalore', 'Hyderabad')
+- cityList = [ 'Delhi', 'Patna', 'Kanpur', 'Bangalore', 'Hyderabad']
+1. cityTuple[0] = 'Kolkata'
+2. cityList[0] = 'Kolkata'
+Operation 1 is not valid(You can not change tuple) while operation 2 is valid.
+if you stuck somewhere open your terminal and use help command
+- help(tuple)
+- help(list)
+
+
+
+
+Lists and tuples - alternatives to arrays
+
+A list is quite similar to an array in many ways, but there are pros and cons to consider. For example, the number of elements in a list is allowed to change, whereas arrays have a fixed length that must be known at the time of memory allocation. Elements in a list can be of different type, i.e you may mix integers, floats and strings, whereas elements in an array must be of the same type. 
+ 
+ 
+ 
+ 
+The range() function that we used above in our for loop actually returns a list. If you for example write range(5) at the prompt in ipython
+you get [0, 1, 2, 3, 4] in return, i.e., a list with 5 numbers.
+
+
+
+In a for loop, the line for i in range[5] makes i take on each of the numbers
+0,1,2,3,4
+0
+,
+1
+,
+2
+,
+3
+,
+4
+in turn, as we saw above. Writing, e.g., x = range(5), gives a list by the name x, containing those five numbers. These numbers may now be accessed (e.g., as x[2], which contains the number 2) and used in computations just as we saw for array elements. As with arrays, indices run from
+0
+0
+to
+n−1
+n
+−
+1
+, when n is the number of elements in a list. You may convert a list to an array by x = array(L).
+A list may also be created by simply writing, e.g.,
+
+
+
+giving a list where x[0] contains the string hello, x[1] contains the integer 4, etc. We may add and/or delete elements anywhere in the list as shown in the following example.
+
+x = ['hello', 4, 3.14, 6]
+x.insert(0, -2) # x then becomes [-2, 'hello', 4, 3.14, 6]
+del x[3]        # x then becomes [-2, 'hello', 4, 6]
+x.append(3.14)  # x then becomes [-2, 'hello', 4, 6, 3.14]
+
+
+
+
+
+Note the ways of writing the different operations here. Using append() will always increase the list at the end. If you like, you may create an empty list as x = [] before you enter a loop which appends element by element. If you need to know the length of the list, you get the number of elements from len(x), which in our case is 5, after appending 3.14 above. 
+
+
+- This function is handy if you want to traverse all list elements by index, since range(len(x)) gives you all legal indices. Note that there are many more operations on lists possible than shown here.
+
+ range(len(x))
+
+
+
+
+
+Previously, we saw how a for loop may run over array elements. When we want to do the same with a list in Python, we may do it as this little example shows,
+
+x = ['hello', 4, 3.14, 6]
+for e in x:
+    print 'x element: ', e
+print 'This was all the elements in the list x'
+
+
+
+
+This is how it usually is done in Python, and we see that e runs over the elements of x directly, avoiding the need for indexing. Be aware, however, that when loops are written like this, you can not change any element in x by "changing" e. That is, writing e += 2 will not change anything in x, since e can only be used to read (as opposed to overwrite) the list elements.
+There is a special construct in Python that allows you to run through all elements of a list, do the same operation on each, and store the new elements in another list. It is referred to as list comprehension and may be demonstrated as follows.
+
+List_1 = [1, 2, 3, 4]
+List_2 = [e*10 for e in List_1]
+
+
+
+This will produce a new list by the name List_2, containing the elements 10, 20, 30 and 40, in that order. Notice the syntax within the brackets for List_2, for e in List_1 signals that e is to successively be each of the list elements in List_1, and for each e, create the next element in List_2 by doing e*10. More generally, the syntax may be written as
+
+List_2 = [E(e) for e in List_1]
+
+
+
+
+Good one 
+
+In some cases, it is required to run through 2 (or more) lists at the same time. Python has a handy function called zip for this purpose. An example of how to use zip is provided in the code file_handling.py below.
+
+
+
+
+
+We should also briefly mention about tuples, which are very much like lists, the main difference being that tuples cannot be changed. To a freshman, it may seem strange that such "constant lists" could ever be preferable over lists. However, the property of being constant is a good safeguard against unintentional changes. Also, it is quicker for Python to handle data in a tuple than in a list, which contributes to faster code. With the data from above, we may create a tuple and print the content by writing
+
+
+
+x = ('hello', 4, 3.14, 6)
+for e in x:
+    print 'x element: ', e
+print 'This was all the elements in the tuple x'
+
+
+
+
+Trying insert or append for the tuple gives an error message (because it cannot be changed), stating that the tuple object has no such attribute.
+
+
+
+
+
+
+
+Good one 
+
+I like to use positional arguments only for required arguments, and kwargs for arguments that may or may not be specified, but it is helpful to have a default value. kwargs is nice because you can submit your args in any order you choose. Positional arguments don't give you that freedom.
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import misc
+from scipy.ndimage import rotate
+
+data_orig = misc.face()
+x0,y0 = 580,300 # left eye; (xrot,yrot) should point there
+
+def rot(image, xy, angle):
+    im_rot = rotate(image,angle) 
+    org_center = (np.array(image.shape[:2][::-1])-1)/2.
+    rot_center = (np.array(im_rot.shape[:2][::-1])-1)/2.
+    org = xy-org_center
+    a = np.deg2rad(angle)
+    new = np.array([org[0]*np.cos(a) + org[1]*np.sin(a),
+            -org[0]*np.sin(a) + org[1]*np.cos(a) ])
+    return im_rot, new+rot_center
+
+
+fig,axes = plt.subplots(2,2)
+
+axes[0,0].imshow(data_orig)
+axes[0,0].scatter(x0,y0,c="r" )
+axes[0,0].set_title("original")
+
+for i, angle in enumerate([66,-32,90]):
+    data_rot, (x1,y1) = rot(data_orig, np.array([x0,y0]), angle)
+    axes.flatten()[i+1].imshow(data_rot)
+    axes.flatten()[i+1].scatter(x1,y1,c="r" )
+    axes.flatten()[i+1].set_title("Rotation: {}deg".format(angle))
+
+plt.show()
+
+
+
+A review of the different optimizers
+ 
+from scipy import optimize
+>>> def f(x):
+...     return -np.exp(-(x - 0.7)**2)
+>>> result = optimize.minimize_scalar(f)
+>>> result.success # check if solver was successful
+True
+>>> x_min = result.x
+>>> x_min 
+0.699999999...
+>>> x_min - 0.7 
+-2.160590595323697e-10
+
+
+
+Rosenbrok function 
+
+
+
+
+
+#scipy.integrate.odeint() will be a damped spring-mass oscillator (2nd order oscillator).
+#The position of a mass attached to a spring obeys the 2nd order ODE
+#y’’ + 2 eps wo y’ + wo^2 y = 0
+#with wo^2 = k/m with k the spring constant,
+# m is the mass
+# and eps=c/(2 m wo) ( "damping ratio".)
+# with c the damping coefficient. For this example, we choose the parameters as:
+mass=0.5 #kg
+kspring = 4 # N/m
+cviscous = 0.4 # N s/m
+eps = cviscous /(2 * mass * np.sqrt(kspring/mass))
+eps < 1 # system being underepumped
+
+#For the scipy.integrate.odeint() solver the 2nd order equation needs to be transformed
+# in a system of twofirst-orderequationsforthevectorY=(y, y’).
+#It will be convenient to define nu = 2 eps * wo = c / mandom = wo^2 = k/m:
+nu_coef = cviscous / mass
+om_coef = kspring / mass
+
+def calc_deri(yvec, time, nuc, omc):
+    return (yvec[1], -nuc * yvec[1] - omc * yvec[0])
+time_vec = np.linspace(0, 10, 100)
+yarr = odeint(calc_deri,(1, 0), time_vec, args=(nu_coef, om_coef))
+
+
+
+
+
+
+
+
+Fitting a waveform with a simple Gaussian model 
+The signal is very simple and can be modeled as a single Gaussian function and an offset corresponding to the background noise. To fit the signal with the function, we must: 
+• define the model
+ • propose an initial solution
+
+ • call scipy.optimize.leastsq 
+
+
+
+
+def model(t, coeffs):
+
+ ... return coeffs[0] + coeffs[1] * np.exp( - ((t-coeffs[2])/coeffs[3])**2 ) 
+
+
+
+
+
+Fit scipy.optimize.leastsq minimizes the sum of squares of the function given as an argument. Basi- cally, the function to minimize is the residuals (the difference between the data and the model): 
+
+-  np.lookfor('convolution')
+
+
+
+
+
+
+
+1-vacuum quantum fluctuation 
+
+2-algebra stamina
+3-aliases (a false or assumed identity.)
+
+
+
+
+IPython supports so called magic functions by prefixing a command with the % character. For example, the run and whos functions from the previous section are magic functions. 
+
+
+
+Python supports the following numerical,scalar types:
+
+Integer 
+Floats
+Complex
+
+
+
+basic arithmetic operations
+
+
+To be safe: use floats while dividing 3/2.
+
+   Or  a / float(b) 
+
+For better behavior 
+ 
+
+from __future__ import division 
+
+
+Tip: If you explicitly want integer division use //: 
+3.0 // 2 
+
+
+
+
+Tip: For collections of numerical data that all have the same type, it is often more efficient to use the array type provided by the numpy module. A NumPy array is a chunk of memory containing fixed-sized items. With NumPy arrays, operations on elements can be faster because elements are regularly spaced in memory and more operations are performed through specialized C functions instead of Python loops. 
+
+
+
+
+List comprehensions provide a concise way to create lists
+
+
+
+
+The notation r.method() (e.g. r.append(3) and L.pop()) is our first example of object-oriented programming (OOP). Being a list, the object r owns the method function that is called using the notation .. 
+
+
+
+A string is an immutable object and it is not possible to modify its contents. One may however create new strings from the original one. 
+
+
+
+Adictionary is basically an efficient table that maps keys to values. 
+
+A good function for dic is .keys() and values()
+
+
+
+Tip: It can be used to conveniently store and  values associated with a name(a string for a date,a name, 
+
+
+When looping through a sequence, the position index and corresponding value can be retrieved at the same time using the enumerate() function.
+>>>
+>>> for i, v in enumerate(['tic', 'tac', 'toe']):
+...     print(i, v)
+
+
+To loop over two or more sequences at the same time, the entries can be paired with the zip() function.
+
+
+>>> questions = ['name', 'quest', 'favorite color']
+>>> answers = ['lancelot', 'the holy grail', 'blue']
+>>> for q, a in zip(questions, answers):
+...     print('What is your {0}?  It is {1}.'.format(q, a))
+...
+What is your name?  It is lancelot.
+What is your quest?  It is the holy grail.
+What is your favorite color?  It is blue.
+
+
+
+To loop over a sequence in sorted order, use the sorted() function which returns a new sorted list while leaving the source unaltered.
+>>>
+>>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
+>>> for f in sorted(set(basket)):
+...     print(f)
+
+
+Tuples 
+Tuples are basically immutable lists. The elements of a tuple are written between parentheses, or just separated by commas: 
+
+
+
+
+key concept here is mutable vs. immutable
+ – mutable objects can be changed in place
+
+ – immutable objects cannot be modified once created 
+
+
+
+
+All the data stored in a Python program is built around the concept of an object. Objects include fundamental data types such as numbers, strings, lists, and dictionaries. It's also possible to create user-defined objects in the form of classes or extension types.
+
+
+
+Terminology
+Every piece of data stored in a program is an object. Each object has an identity, a type, and a value.
+For example, when you write a = 42, an integer object is created with the value of 42. You can view the identity of an object as a pointer to its location in memory. a is a name that refers to this specific location.
+The type of an object (which is itself a special kind of object) describes the internal representation of the object as well as the methods and operations that it supports. When an object of a particular type is created, that object is sometimes called an instance of that type. After an object is created, its identity and type cannot be changed. If an object’s value can be modified, the object is said to be mutable. If the value cannot be modified, the object is said to be immutable. An object that contains references to other objects is said to be a container or collection.
+In addition to holding a value, many objects define a number of data attributes and methods. An attribute is a property or value associated with an object. A method is a function that performs some sort of operation on an object when the method is invoked. Attributes and methods are accessed using the dot (.) operator, as shown in the following example:
+
+
+But most often, it is more readable to iterate over values: 
+
+
+for word in ('cool', 'powerful', 'readable'): ... print('Python is %s' % word)
+
+
+
+continue the next iteration of a loop.: 
+
+a = [1, 0, 2, 4] for element in a: 
+if element == 0: continue 
+print(1. / element) 
+
+
+ 
+
+
+Advanced iteration 
+Iterate over any sequence
+
+ You can iterate over any sequence (string, list, keys in a dictionary, lines in a file, ...): 
+
+
+
+
+vowels = 'aeiouy' 
+>>> for i in 'powerful': ... if i in vowels: ... print(i)
+
+
+
+>>> message = "Hello how are you?" >>> message.split() # returns a list ['Hello', 'how', 'are', 'you?']
+>>> for word in message.split():
+... print(word)
+
+
+
+Tip: Few languages (in particular, languages for scientific computing) allow to loop over anything but inte- gers/indices. With Python it is possible to loop exactly over the objects of interest without bothering with indices you often don’t care about. This feature can often be used to make code more readable. 
+
+
+
+
+- Keeping track of enumeration number 
+
+Common task is to iterate over a sequence while keeping track of the item number. 
+
+
+
+
+
+    >>>  words = ('cool', 'powerful', 'readable') 
+        >>>  for i in range(0, len(words)): 
+... print((i, words[i])) 
+
+
+
+for index, item in enumerate(words): 
+      print((index, item)) 
+
+
+
+
+>>> d = {'a': 1, 'b':1.2, 'c':1j} 
+>>> for key, val in sorted(d.items()):
+
+ ... print('Key: %s has value: %s' % (key, val)) 
+
+
+
+def wallis(n):
+    pi = 2.
+    for i in xrange(1, n):
+        left = (2. * i)/(2. * i - 1.)
+        right = (2. * i)/(2. * i + 1.)
+        pi = pi * left * right
+    return pi
+
+
+
+Note: Notethesyntaxtodefineafunction:
+ • the def keyword;
+ • is followed by the function’s name, then
+ • the arguments of the function are given between parentheses followed by a colon. • the function body;
+
+ • and return object for optionally returning values. 
+
+
+
+
+
+def add_to_dict(args={'a': 1, 'b': 2}): for i in args.keys(): 
+args[i] += 1 print args 
+
+
+
+In [98]: def slicer(seq, start=None, stop=None, step=None): 
+-         ....:  """Implement basic python slicing.""" 
+-         ....:  return seq[start:stop:step] ....: 
+In [101]: rhyme = 'one fish, two fish, red fish, blue fish'.split() In [102]: rhyme 
+Out[102]: ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish'] In [103]: slicer(rhyme) 
+Out[103]: ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish'] In [104]: slicer(rhyme, step=2) 
+Out[104]: ['one', 'two', 'red', 'blue'] In [105]: slicer(rhyme, 1, step=2) 
+Out[105]: ['fish,', 'fish,', 'fish,', 'fish'] 
+In [106]: slicer(rhyme, start=1, stop=4, step=2) Out[106]: ['fish,', 'fish,'] 
+
+
+
+Global variables 
+Variables declared outside the function can be referenced within the function 
+
+
+
+Variable number of parameters 
+Special forms of parameters: 
+• *args: any number of positional arguments packed into a tuple
+
+ • **kwargs: any number of keyword arguments packed into a dictionary 
+
+
+
+
+ 
+ 
+Docstrings 
+Documentation about what the function does and its parameters. 
+
+
+
+def funcname(params):
+....: """Concise one-line sentence describing the function. ....:
+ ....: Extended summary which can contain multiple paragraphs. ....: """
+ ....: # function body
+ ....: pass
+
+
+
+the gist of the algorithm (divide and conquer).
+
+
+
+sort(array=[12,4,5,6,7,3,1,15])
+
+def sort(array=[12,4,5,6,7,3,1,15]):
+    less = []
+    equal = []
+    greater = []
+
+    if len(array) > 1:
+        pivot = array[0]
+        for x in array:
+            if x < pivot:
+                less.append(x)
+            if x == pivot:
+                equal.append(x)
+            if x > pivot:
+                greater.append(x)
+
+        # Don't forget to return something!
+        return sort(less)+ equal +sort(greater)  # Just use the + operator to join lists
+    # Note that you want equal ^^^^^ not pivot
+    else:  # You need to hande the part at the end of the recursion - when you only have one element in your array, just return the array.
+        return array
+
+
+
+def fib():
+    a, b = 0, 1
+    while True:            # First iteration:
+        yield a            # yield 0 to start with and then
+        a, b = b, a + b    # a will now be 1, and b will also be 1, (0 + 1)
+
+
+
+for index, fibonacci_number in zip(range(10), fib()):
+     print('{i:3}: {f:3}'.format(i=index, f=fibonacci_number))
+
+
+
+
+Scite with Python(x,y) 
+
+
+
+Importing objects from modules 
+
+
+
+os.listdir('.') 
+
+
+
+
+Tip: Ifwewanttowritelargerandbetterorganizedprograms(comparedtosimplescripts),wheresomeobjects are defined, (variables, functions, classes) and that we want to reuse several times, we have to create our own modules. 
+
+
+
+dir(os)
+
+
+
+
+
+Note: Rule of thumb 
+- Setsofinstructionsthatarecalledseveraltimesshouldbewritteninsidefunctionsforbettercodereusability. 
+- Functions (or other bits of code) that are called from several scripts should be written inside a module, so that only the module is imported in the different scripts (do not copy-and-paste your functions in the different scripts!). 
+
+
+
+
+
+import sys
+
+ new_path = '/home/emma/user_defined_modules' if new_path not in sys.path: 
+
+sys.path.append(new_path) 
+
+
+
+
+Tip: Indenting is compulsory in Python! Every command block following a colon bears an additional indentationlevelwithrespecttothepreviouslinewithacolon.Onemustthereforeindentafterdef f(): or while:. At the end of such logical blocks, one decreases the indentation depth (and re-increases it if a new block is entered, etc.) 
+Strict respect of indentation is the price to pay for getting rid of { or ; characters that delineate logical blocks in other languages. Improper indentation leads to errors such as 
+All this indentation business can be a bit confusing in the beginning. However, with the clear indentation, and in the absence of extra characters, the resulting code is very nice to read compared to other languages. 
+
+
+
+
+Long lines: you should not write very long lines that span over more than (e.g.) 80 characters. Long lines 
+can be broken with the \ character 
+
+
+
+long_line = "Here is a very very long line \ ... that we break in two parts." 
+
+
+
+
+- os.environ.keys() 
+
+
+
+
+
+
+
+def filter_name(name): try: 
+name = name.encode('ascii') except UnicodeError, e: 
+if name == 'Gaël': print('OK, Gaël') 
+else:
+
+ raise e 
+
+return name 
+
+
+
+
+: ....: ....: ....: ....: ....: 
+In [18]: 
+In [19]: ....: ....: ....: ....: ....: ....: 
+In [20]: 
+Out[20]: 
+def achilles_arrow(x): if abs(x - 1) < 1e-3: 
+raise StopIteration x = 1 - (1-x)/2. 
+return x x = 0 
+while True: try: 
+x = achilles_arrow(x) except StopIteration: 
+break 
+0.9990234375 
+
+
+
+
+Python objects 
+• high-level number objects: integers, floating point
+
+ • containers: lists (costless insertion and append), dictionaries (fast lookup) 
+
+
+
+
+
+Tip: For example,An array containing:
+ • values of an experiment/simulation at discrete time steps
+ • signal recorded by a measurement device, e.g. sound wave
+ • pixels of an image, grey-level or colour
+
+ • 3-D data measured at different X-Y-Z positions, e.g. MRI scan 
+
+
+
+
+>>> b = np.arange(1, 9, 2) # start, end (exclusive), step >>> b 
+array([1, 3, 5, 7]) 
+
+
+
+
+>>> c = np.linspace(0, 1, 6) # start, end, num-points >>> c
+ array([ 0. , 0.2, 0.4, 0.6, 0.8, 1. ])
+
+ >>> d = np.linspace(0, 1, 5, endpoint=False) 
+
+>>> d
+
+ array([ 0. , 0.2, 0.4, 0.6, 0.8]) 
+
+
+
+
+a.dtype 
+
+
+
+
+
+Tip: Differentdata-typesallowustostoredatamorecompactlyinmemory,butmostofthetimewesimplywork with floating point numbers. Note that, in the example above, NumPy auto-detects the data-type from the input. 
+
+
+
+
+
+
+image = np.random.rand(30, 30)
+>>> plt.imshow(image, cmap=plt.cm.hot)
+
+ >>> plt.colorbar() 
+
+
+
+
+
+Slicing: Arrays, like other Python sequences can also be sliced: 
+>>> a = np.arange(10)
+>>> a
+
+ array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) >>> a[2:9:3] # [start:end:step] array([2, 5, 8]) 
+
+Note that the last index is not included! : 
+>>> a[:4]
+
+ array([0, 1, 2, 3]) 
+
+All three slice components are not required: by default, start is 0, end is the last and step is 1: 
+>>> a[1:3]
+ array([1, 2])
+>>> a[::2]
+
+ array([0, 2, 4, 6, 8]) >>> a[3:] 
+
+array([3, 4, 5, 6, 7, 8, 9]) 
+
+
+
+a = np.arange(10)
+
+ >>> c = a[::2].copy() # force a copy 
+
+
+
+
+
+
+
+>>> x = np.array([[1, 1], [2, 2]]) >>> x
+
+ array([[1, 1], 
+
+[2, 2]]) 
+>>> x.sum(axis=0) # columns (first dimension) array([3, 3])
+>>> x[:, 0].sum(), x[:, 1].sum()
+
+ (3, 3) 
+
+>>> x.sum(axis=1) # rows (second dimension) array([2, 4])
+>>> x[0, :].sum(), x[1, :].sum()
+
+ (2, 4) 
+
+
+
+
+
+>>> x = np.array([1, 3, 2]) >>> x.min()
+ 1
+
+ >>> x.max() 
+
+3 
+>>> x.argmin() # index of minimum 0
+
+ >>> x.argmax() # index of maximum 1 
+
+
+
+
+
+>>> a = np.zeros((100, 100)) >>> np.any(a != 0)
+ False
+
+ >>> np.all(a == a) 
+
+True 
+>>> a = np.array([1, 2, 3, 2]) >>> b = np.array([2, 2, 3, 2]) >>> c = np.array([6, 4, 4, 5]) >>> ((a <= b) & (b <= c)).all() True 
+
+ 
+ 
+ 
+ 
+Broadcasting 
+• Basic operations on numpy arrays (addition, etc.) are elementwise • This works on arrays of the same size. 
+Nevertheless, It’s also possible to do operations on arrays of different sizes if Numpy can transform these arrays so that they all have
+
+ the same size: this conversion is called broadcasting. 
+
+The image below gives an example of broadcasting: 
+
+
+
+
+
+Tip: 
+Broadcastingseemsabitmagical,butitisactuallyquitenaturaltouseitwhenwewanttosolveaproblem whose output data is an array with more dimensions than input data. 
+
+
+
+
+>>> x, y = np.arange(5), np.arange(5)[:, np.newaxis] >>> distance = np.sqrt(x ** 2 + y ** 2)
+>>> distance
+
+ array([[ 0. 
+
+[1. [2. [3. [4. 
+,1. ,2. ,3. ,4. ], , 1.41421356, 2.23606798, 3.16227766, 4.12310563], , 2.23606798, 2.82842712, 3.60555128, 4.47213595], , 3.16227766, 3.60555128, 4.24264069, 5. ], , 4.12310563, 4.47213595, 5. , 5.65685425]]) 
+
+
+
+
+
+
+ 
+
+ 
+
+>>> plt.pcolor(distance) >>> plt.colorbar() 
+
+
+
+Any shape manipulation Flattening 
+
+>>> a = np.array([[1, 2, 3], [4, 5, 6]]) >>> a.ravel()
+ array([1, 2, 3, 4, 5, 6])
+
+ >>> a.T 
+
+array([[1, 4], [2, 5], 
+[3, 6]]) 
+>>> a.T.ravel()
+
+ array([1, 4, 2, 5, 3, 6]) 
+
+
+
+
+The inverse operation to flattening is reshaping 
+
+
+a.shape
+ (2, 3)
+>>> b = a.ravel()
+>>> b = b.reshape((2, 3)) >>> b
+
+ array([[1, 2, 3], 
+
+[4, 5, 6]]) 
+
+
+
+Dimension shuffling  by np.traspose 
+ 
+ 
+ 
+ 
+a = np.array([[4, 3, 5], [1, 2, 1]]) >>> b = np.sort(a, axis=1)
+>>> b
+
+ array([[3, 4, 5], 
+
+[1, 1, 2]]) 
+
+
+
+
+
+Summary 
+What do you need to know to get started? 
+- Know how to create arrays : array, arange, ones, zeros. 
+- Know the shape of the array with array.shape, then use slicing to obtain different views of the array: 
+   array[::2], etc. Adjust the shape of the array using reshape or flatten it with ravel. 
+- Obtain a subset of the elements of an array and/or modify their values with masks 
+- Know  operations on arrays, such as finding the mean or max (array.max(), array.mean()). No need to retain everything, but have the reflex to search in the documentation (online docs, help(), lookfor())!! 
+- For advanced use: master the indexing with arrays of integers, as well as broadcasting. Know more Numpy functions to handle various array operations. 
+
+
+
+
+
+
+Forces operation
+
+ Force to integer from floats 
+
+
+a = np.array([1.7, 1.2, 1.6])
+>>> b = a.astype(int) # <-- truncates to integer >>> b
+
+ array([1, 1, 1]) 
+
+
+
+
+Or rounding 
+
+
+a = np.array([1.2, 1.5, 1.6, 2.5, 3.5, 4.5]) >>> b = np.around(a)
+
+ >>> b # still floating-point array([ 1., 2., 2., 2., 4., 4.]) 
+
+>>> c = np.around(a).astype(int) >>> c
+
+ array([1, 2, 2, 2, 4, 4]) 
+
+
+
+
+Diff data size 
+
+
+>>> np.array([1], dtype=int).dtype dtype('int64')
+
+ >>> np.iinfo(np.int32).max, 2**31 - 1 (2147483647, 2147483647) 
+
+
+
+
+
+Smaller data types 
+If you don’t know you need special data types, then you probably don’t. Comparison on using float32 instead of float64: 
+• Half the size in memory and on disk
+
+ • Half the memory bandwidth required (may be a bit faster in some operations) 
+
+• But: bigger rounding errors — sometimes in surprising places (i.e., don’t use them unless you really need them) 
+
+
+
+Data structure type
+
+
+samples = np.zeros((6,), dtype=[('sensor_code', 'S4'),
+
+ ... ('position', float), ('value', float)]) 
+
+-         >>>  samples.ndim 1 
+-         >>>  samples.shape
+   (6,)
+  >>> samples.dtype.names ('sensor_code', 'position', 'value') 
+>>>
+ ...
+ >>>
+
+ array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13), 
+
+
+
+
+
+
+Good practices 
+- Explicit variable names (no need of a comment to explain what is in the variable) 
+- Style: spaces after commas, around =, etc. 
+   A certain number of rules for writing “beautiful” code (and, more importantly, using the same conven- tions as everybody else!) are given in the Style Guide for Python Code and the Docstring Conventions page (to manage help strings). 
+- Except some rare cases, variable names and comments in English. 
+
+
+
+
+ 
+ 
+Matplotlib comes with a set of default settings that allow customizing all kinds of properties. You can control the defaults of almost every property in matplotlib: figure size and dpi, line width, color and style, axes, axis and grid properties, text and font properties and so on 
+
+
+
+import pylab as pl import numpy as np 
+# Create a figure of size 8x6 inches, 80 dots per inch 
+pl.figure(figsize=(8, 6), dpi=80)
+
+ # Create a new subplot from a grid of 1x1 
+
+pl.subplot(1, 1, 1)
+
+ X = np.linspace(-np.pi, np.pi, 256, endpoint=True) 
+
+C, S = np.cos(X), np.sin(X)
+
+ # Plot cosine with a blue continuous line of width 1 (pixels) 
+
+pl.plot(X, C, color="blue", linewidth=1.0, linestyle="-")
+
+ # Plot sine with a green continuous line of width 1 (pixels) 
+
+pl.plot(X, S, color="green", linewidth=1.0, linestyle="-") # Set x limits 
+pl.xlim(-4.0, 4.0) # Set x ticks 
+pl.xticks(np.linspace(-4, 4, 9, endpoint=True)) # Set y limits 
+pl.ylim(-1.0, 1.0) # Set y ticks 
+pl.yticks(np.linspace(-1, 1, 5, endpoint=True)) # Save figure using 72 dots per inch 
+# savefig("exercice_2.png", dpi=72) 
+# Show result on screen 
+pl.show() 
+
+
+
+
+Tip: Ticks are now properly placed but their label is not very explicit. We could guess that 3.142 is 𝜋 but it would be better to make it explicit. When we set tick values, we can also provide a corresponding label in the second argument list. Note that we’ll use latex to allow for nice rendering of the label. 
+
+
+
+
+Tip: Spinesarethelinesconnectingtheaxistickmarksandnotingtheboundariesofthedataarea.Theycanbe placed at arbitrary positions and until now, they were on the border of the axis. We’ll change that since we want to have them in the middle. Since there are four of them (top/bottom/left/right), we’ll discard the top and right by setting their color to none and we’ll move the bottom and left ones to coordinate 0 in data space coordinates. 
+
+
+
+
+Tip: Let’saddalegendintheupperleftcorner.Thisonlyrequiresaddingthekeywordargumentlabel(thatwill be used in the legend box) to the plot commands. 
+
+
+
+
+pl.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine") pl.plot(X, S, color="red", linewidth=2.5, linestyle="-", label="sine") 
+pl.legend(loc='upper left') ... 
+
+
+
+
+Tip: Let’sannotatesomeinterestingpointsusingtheannotatecommand.Wechosethe2𝜋/3valueandwewant 
+
+
+
+
+
+
+
+
+
+figsize
+figure.figsize
+figure size in in inches (width, height)
+dpi
+figure.dpi
+resolution in dots per inch
+facecolor
+figure.facecolor
+color of the drawing background
+edgecolor
+figure.edgecolor
+color of edge around the drawing background
+
+
+
+
+
+
+Ticks 
+Well formatted ticks are an important part of publishing-ready figures. Matplotlib provides a totally configurable system for ticks. There are tick locators to specify where ticks should appear and tick formatters to give ticks the appearance you want. Major and minor ticks can be located and formatted independently from each other. Per default minor ticks are not shown, i.e. there is only an empty list for them because it is as NullLocator (see below). 
+
+
+
+
+- import pylab as pl
+   >>> help(pl.plot)
+
+
+
+
+
+
+
+
+
