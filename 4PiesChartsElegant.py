@@ -41,3 +41,4 @@ ax4.legend(labels4, bbox_to_anchor=(1.25, 0.65))
 plt.show()
 
 fig.savefig('/Users/kawanoman/Desktop/test.png', bbox_inches="tight")
+########
