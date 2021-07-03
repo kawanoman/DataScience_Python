@@ -11,7 +11,6 @@ plt.plot( 'x_values', 'y_values', data=df, color='skyblue', alpha=1)
 # Show plot
 plt.show()
 
-
 plt.plot( [1,1.1,1,1.1,1], linestyle='-' , linewidth=4)
 plt.text(1.5, 1.3, "linestyle = '-' ", horizontalalignment='left', size='medium', color='C0', weight='semibold')
 plt.plot( [2,2.1,2,2.1,2], linestyle='--' , linewidth=4 )
