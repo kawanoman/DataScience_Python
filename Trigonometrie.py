@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
-
 #This is a funktion for calculting a product of expo and cos funktion.
 
 def f(t):
