@@ -13,6 +13,7 @@ sizes2 = [1,2]
 sizes3 = [1,2]
 sizes4 = [1,2]
 
+
 colors1 = ['#F5FC34', '#52FC34', '#FAAB23', '#237DFA', '#C863FA', ]
 colors2 = ['#FAF063', '#63BBFA']
 colors3 = ['#6A0D7D', '#503C3C']
