@@ -1,6 +1,5 @@
 # library
 import matplotlib.pyplot as plt
-
 # create random data
 names = 'groupA', 'groupB', 'groupC', 'groupD',
 values = [12, 11, 3, 30]
