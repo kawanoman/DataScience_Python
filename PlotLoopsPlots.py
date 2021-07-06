@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 # Optional: define x for all the sub-plots
 x = np.linspace(0,2*np.pi,100)
 
