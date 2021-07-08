@@ -12,3 +12,6 @@ sns.pairplot(df, kind="scatter", hue="species", plot_kws=dict(s=80, edgecolor="w
 plt.show()
 
 
+
+
+
