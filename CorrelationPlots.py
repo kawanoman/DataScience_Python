@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 df = sns.load_dataset('iris')
-
+ 
 # left
 sns.pairplot(df, kind="scatter", hue="species", markers=["o", "s", "D"], palette="Set2")
 plt.show()
