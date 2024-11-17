@@ -1,0 +1,103 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. Datenaufbereitung
+# ---------------------
+
+# Beispielhafte Steuerdaten erstellen
+data = {
+    'SteuerID': range(1, 101),
+    'Name': np.random.choice(['Müller', 'Schmidt', 'Schneider', 'Fischer', 'Weber'], size=100),
+    'Einkommen': np.random.randint(20000, 150000, size=100),
+    'Abzüge': np.random.randint(5000, 30000, size=100),
+    'Steuerjahr': np.random.choice([2022, 2023, 2024], size=100),
+    'Region': np.random.choice(['Nord', 'Süd', 'Ost', 'West'], size=100)
+}
+
+df = pd.DataFrame(data)
+
+# Fehlende Werte einführen
+df.loc[df.sample(frac=0.1).index, 'Abzüge'] = np.nan
+df.loc[df.sample(frac=0.05).index, 'Region'] = np.nan
+
+print("Initiales DataFrame mit fehlenden Werten:")
+print(df.head())
+
+# Fehlende Werte behandeln
+# Für 'Abzüge' fehlende Werte mit dem Median auffüllen
+df['Abzüge'].fillna(df['Abzüge'].median(), inplace=True)
+
+# Für 'Region' fehlende Werte mit dem häufigsten Wert (Mode) auffüllen
+df['Region'].fillna(df['Region'].mode()[0], inplace=True)
+
+print("\nDataFrame nach der Behandlung fehlender Werte:")
+print(df.head())
+
+# 2. Datenorganisation
+# ---------------------
+
+# Gruppierung nach Steuerjahr und Region
+gruppen = df.groupby(['Steuerjahr', 'Region']).agg(
+    Gesamt_Einkommen=pd.NamedAgg(column='Einkommen', aggfunc='sum'),
+    Durchschnitt_Einkommen=pd.NamedAgg(column='Einkommen', aggfunc='mean'),
+    Gesamt_Abzüge=pd.NamedAgg(column='Abzüge', aggfunc='sum'),
+    Anzahl_Einträge=pd.NamedAgg(column='SteuerID', aggfunc='count')
+).reset_index()
+
+print("\nGruppierte Daten:")
+print(gruppen)
+
+# 3. Datenverarbeitung
+# ---------------------
+
+# Berechnung der zu zahlenden Steuern (vereinfachtes Beispiel)
+# Annahme: Steuer = 30% des Einkommens nach Abzügen
+df['Zu_Zahlende_Steuern'] = (df['Einkommen'] - df['Abzüge']) * 0.3
+
+# Erstellung einer Steuerkategorie
+def steuer_kategorie(steuern):
+    if steuern > 30000:
+        return 'Hoch'
+    elif steuern > 15000:
+        return 'Mittel'
+    else:
+        return 'Niedrig'
+
+df['Steuerkategorie'] = df['Zu_Zahlende_Steuern'].apply(steuer_kategorie)
+
+print("\nDataFrame mit zu zahlenden Steuern und Steuerkategorie:")
+print(df.head())
+
+# 4. Analyse und Visualisierung
+# ------------------------------
+
+# Gesamtsteuern nach Steuerjahr
+gesamtsteuern_jahr = df.groupby('Steuerjahr')['Zu_Zahlende_Steuern'].sum()
+
+print("\nGesamtsteuern nach Steuerjahr:")
+print(gesamtsteuern_jahr)
+
+# Visualisierung: Balkendiagramm der Gesamtsteuern pro Steuerjahr
+plt.figure(figsize=(8,6))
+gesamtsteuern_jahr.plot(kind='bar', color='skyblue')
+plt.title('Gesamtsteuern pro Steuerjahr')
+plt.xlabel('Steuerjahr')
+plt.ylabel('Zu zahlende Steuern')
+plt.xticks(rotation=0)
+plt.tight_layout()
+plt.show()
+
+# Durchschnittliche zu zahlende Steuern nach Region
+durchschnitt_steuern_region = df.groupby('Region')['Zu_Zahlende_Steuern'].mean()
+
+print("\nDurchschnittliche zu zahlende Steuern nach Region:")
+print(durchschnitt_steuern_region)
+
+# Visualisierung: Kreisdiagramm der durchschnittlichen Steuern nach Region
+plt.figure(figsize=(6,6))
+durchschnitt_steuern_region.plot(kind='pie', autopct='%1.1f%%', startangle=140, colors=['gold', 'lightgreen', 'lightcoral', 'lightskyblue'])
+plt.title('Durchschnittliche Steuern nach Region')
+plt.ylabel('')
+plt.tight_layout()
+plt.show()
