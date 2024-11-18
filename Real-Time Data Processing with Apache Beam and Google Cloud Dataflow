@@ -1,0 +1,22 @@
+import apache_beam as beam
+from apache_beam.options.pipeline_options import PipelineOptions
+
+# Define pipeline options
+options = PipelineOptions(
+    runner='DataflowRunner',
+    project='your-gcp-project',
+    region='us-central1',
+    temp_location='gs://your-bucket/temp',
+    streaming=True
+)
+
+# Define the pipeline
+with beam.Pipeline(options=options) as p:
+    (p
+     | 'Read from Pub/Sub' >> beam.io.ReadFromPubSub(topic='projects/your-project/topics/your-topic')
+     | 'Decode UTF-8' >> beam.Map(lambda x: x.decode('utf-8'))
+     | 'Split into words' >> beam.FlatMap(lambda line: line.split())
+     | 'Pair with 1' >> beam.Map(lambda word: (word, 1))
+     | 'Group and sum' >> beam.CombinePerKey(sum)
+     | 'Write to BigQuery' >> beam.io.WriteToBigQuery('your-project:dataset.wordcount')
+    )
