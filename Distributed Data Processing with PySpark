@@ -1,0 +1,24 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, count
+
+# Initialize Spark session
+spark = SparkSession.builder \
+    .appName("LogAnalysis") \
+    .getOrCreate()
+
+# Load data from a large log file
+logs_df = spark.read.text("hdfs:///logs/access.log")
+
+# Simple parsing: assume each log line has a status code at the end
+parsed_logs = logs_df.selectExpr("split(value, ' ')[-1] as status")
+
+# Filter successful requests (status code 200)
+success_logs = parsed_logs.filter(col("status") == "200")
+
+# Count the number of successful requests
+success_count = success_logs.agg(count("*").alias("success_count")).collect()[0]['success_count']
+
+print(f"Number of successful requests: {success_count}")
+
+# Stop Spark session
+spark.stop()
