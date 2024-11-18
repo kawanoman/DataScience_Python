@@ -1,0 +1,11 @@
+import modin.pandas as pd  # Modin overrides pandas
+
+# Read a large CSV file
+df = pd.read_csv('large_dataset.csv')
+
+# Perform data manipulation
+filtered_df = df[df['value'] > 100]
+grouped = filtered_df.groupby('category').agg({'value': 'mean'})
+
+# Display results
+print(grouped.head())
