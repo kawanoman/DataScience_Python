@@ -1,0 +1,10 @@
+import dask.dataframe as dd
+
+# Read multiple large CSV files
+df = dd.read_csv('data/large_dataset_*.csv')
+
+# Perform data manipulation similar to Pandas
+filtered_df = df[df['value'] > 100]
+grouped = filtered_df.groupby('category').value.mean().compute()
+
+print(grouped)
