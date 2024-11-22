@@ -28,6 +28,7 @@ plt.ylabel('Count')
 plt.title('Counts per Category')
 plt.xticks(rotation=45)
 plt.tight_layout()
+
 plt.show()
 
 # Stop the Spark session
