@@ -8,3 +8,6 @@ plt.ylabel('some numbers')
 plt.xlabel('time')
 plt.title('Einstieg ins Thema')
 plt.show()
+
+
+
